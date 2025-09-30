@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: rgb(194, 207, 245);
+            font-family: Arial, sans-serif;
+        }
+
+        .logo {
+            color: rgb(0, 128, 255);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .text-logo b {
+            font-size: 3rem;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .inner-container {
+            height: auto;
+            width: 38rem;
+            margin-top: 3rem;
+            border-radius: 19px;
+            background-color: rgb(67, 66, 66);
+            padding: 1rem;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .text-screen {
+            width: 34rem;
+            height: 7rem;
+            border-radius: 19px;
+            font-size: 3.2rem;
+            text-align: right;
+            padding: 15px;
+            overflow-x: scroll;
+            scrollbar-width: none;
+            background-color: whitesmoke;
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-menu {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            width: 34rem;
+        }
+
+        .nav-menu button {
+            flex: 1;
+            margin: 0 5px;
+            height: 3rem;
+            border-radius: 19px;
+            border: none;
+            background-color: rgb(255, 101, 101);
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-menu button:hover {
+            background-color: rgb(220, 70, 70);
+        }
+
+        .calc-body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .text-number {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .text-number button {
+            width: 6rem;
+            height: 5rem;
+            border-radius: 19px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .text-number button:hover {
+            background-color: #ddd;
+        }
+
+        .operator {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .operator button {
+            width: 6rem;
+            height: 5rem;
+            border-radius: 19px;
+            border: none;
+            background-color: orange;
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .operator button:hover {
+            background-color: darkorange;
+        }
+
+        /* Tablet view (max-width: 768px) */
+        @media (max-width: 768px) {
+            .inner-container {
+                width: 90%;
+                padding: 1rem;
+            }
+
+            .text-screen {
+                width: 100%;
+                font-size: 2.2rem;
+                height: 6rem;
+            }
+
+            .nav-menu {
+                width: 100%;
+            }
+
+            .calc-body {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .text-number,
+            .operator {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .text-number button,
+            .operator button {
+                flex: 1 0 28%;
+                /* 3 buttons per row */
+                max-width: 6rem;
+                height: 4rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Mobile view (max-width: 480px) */
+        @media (max-width: 480px) {
+            .inner-container {
+                width: 95%;
+                margin-top: 1rem;
+                padding: 0.8rem;
+            }
+
+            .text-screen {
+                font-size: 1.8rem;
+                height: 5rem;
+                padding: 10px;
+            }
+
+            .nav-menu button {
+                font-size: 1.1rem;
+                height: 2.5rem;
+            }
+
+            .calc-body {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .text-number,
+            .operator {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .text-number button,
+            .operator button {
+                flex: 1 0 22%;
+                /* 4 buttons per row */
+                max-width: 4.5rem;
+                height: 3.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <div class="text-logo">
+            <b>Calculator</b><br>
+            <em>It will make your maths calculation easy</em>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="inner-container">
+            <div class="screen">
+                <div class="text-screen">0000</div>
+            </div>
+
+            <div class="nav-menu">
+                <button class="ac">AC</button>
+                <button class="delete">Del</button>
+            </div>
+
+            <div class="calc-body">
+                <div class="number">
+                    <div class="text-number">
+                        <button class="button" value="9">9</button>
+                        <button class="button" value="8">8</button>
+                        <button class="button" value="7">7</button>
+                        <button class="button" value="6">6</button>
+                        <button class="button" value="5">5</button>
+                        <button class="button" value="4">4</button>
+                        <button class="button" value="3">3</button>
+                        <button class="button" value="2">2</button>
+                        <button class="button" value="1">1</button>
+                        <button class="button" value="0">0</button>
+                        <button class="button" value="00">00</button>
+                        <button class="button" value=".">.</button>
+                    </div>
+                </div>
+
+                <div class="operator">
+                    <button class="button" value="*">*</button>
+                    <button class="button" value="/">÷</button>
+                    <button class="button" value="^2">x²</button>
+                    <button class="button" value="√">√</button>
+                    <button class="button" value="%">%</button>
+                    <button class="button" value="-">-</button>
+                    <button class="button" value="+">+</button>
+                    <button class="button" value="=">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let button = document.querySelectorAll(".button");
+    let screen = document.querySelector(".text-screen");
+    let del = document.querySelector(".delete");
+    let ac = document.querySelector(".ac");
+    screen.innerText = "";
+    let operator = "";
+    let current = "";
+    let pervious = "";
+    const list_operator = ["+", "-", "*", "/", "^2", "√", "%"];
+    let result = 0;
+    button.forEach((ln) => {
+        ln.addEventListener("click", () => {
+            if (!isNaN(ln.value)) {
+                screen.innerText += ln.value;
+                current += ln.value;
+            }
+            else if (ln.value == ".") {
+                screen.innerText += ln.value;
+            }
+            else if (list_operator.includes(ln.value)) {
+                screen.innerText += ln.value;
+                operator = ln.value;
+                pervious = parseFloat(current);
+                current = "";
+            }
+            else if (ln.value == "=") {
+                let num2 = parseFloat(current);
+                switch (operator) {
+                    case "+":
+                        result = pervious + num2;
+                        break;
+                    case "-":
+                        result = pervious - num2;
+                        break;
+                    case "*":
+                        result = pervious * num2;
+                        break;
+                    case "/":
+                        result = pervious / num2;
+                        break;
+                    case "%":
+                        result = pervious % num2;
+                        break;
+                    case "^2":
+                        result = pervious ** 2;
+                        break;
+                    case "√":
+                        result = Math.sqrt(pervious);
+                        break;
+                    default:
+                        result = num2;
+                }
+
+                screen.innerText = `= ${result}`;
+                current = result.toString();
+                operator = "";
+            }
+        });
+    }
+    )
+
+    ac.addEventListener("click", () => {
+        screen.innerText = "";
+        operator = "";
+        current = "";
+        pervious = "";
+    });
+    del.addEventListener("click", () => {
+        screen.innerText = screen.innerText.slice(0, -1);
+        let lastChar = screen.innerText.slice(-1);
+        if (!isNaN(lastChar)) {
+            current = current.slice(0, -1);
+
+        }
+        if (list_operator.includes(lastChar)) {
+            pervious = 0;
+        }
+    });
+
+
+</script>
+
+</html>
